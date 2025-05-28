@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+{% block content %}
+    <div id="app">
+        <div class="mb-3">
+            <div class="row g-2 align-items-center justify-content-between">
+                <div class="col-auto d-flex align-items-center">
+                    <div class="me-2">
+                        <input type="text" v-model="searchId" class="form-control" placeholder="搜索武器ID"
+                               @keydown.enter="searchWeapons">
+                    </div>
+                    <div class="me-2">
+                        <input type="text" v-model="searchName" class="form-control" placeholder="搜索武器名称"
+                               @keydown.enter="searchWeapons">
+                    </div>
+                    <div class="me-2">
+                        <button class="btn btn-outline-primary button" @click="searchWeapons">搜索
+                            <div class="hoverEffect">
+                                <div></div>
+                            </div>
+                        </button>
+                    </div>
+                    <div>
+                        <button class="btn btn-outline-primary button" @click="fetchWeapons">返回
+                            <div class="hoverEffect">
+                                <div></div>
+                            </div>
+                        </button>
+                    </div>
+                </div>
+                <div class="col-auto">
+                    <a href="/weapons/adds" class="btn btn-success">添加武器</a>
+                </div>
+            </div>
+        </div>
+        <table class="table table-hover table-striped">
+            <thead>
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">名称</th>
+                <th scope="col">命途</th>
+                <th scope="col">生命值加成</th>
+                <th scope="col">操作</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr v-for="weapon in weapons" :key="weapon.id">
+                <th scope="row">${weapon.id}$</th>
+                <td>${weapon.name}$</td>
+                <td>${weapon.path}$</td>
+                <td>${weapon.bonus_hp}$</td>
+                <td>
+                    <button class="btn btn-warning btn-sm me-2" @click="editWeapon(weapon)">编辑</button>
+                    <button class="btn btn-danger btn-sm" @click="deleteWeapon(weapon.id)">删除</button>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+        <nav>
+            <ul class="pagination justify-content-center">
+                <li class="page-item" :class="{disabled: page === 1}">
+                    <button class="page-link btn-info" @click="changePage(page-1)" :disabled="page === 1">上一页
+                    </button>
+                </li>
+                <li class="page-item" v-for="p in totalPages" :key="p" :class="{active: p === page}">
+                    <button class="page-link" @click="changePage(p)">${p}$</button>
+                </li>
+                <li class="page-item btn-info" :class="{disabled: page === totalPages}">
+                    <button class="page-link" @click="changePage(page+1)" :disabled="page === totalPages">下一页
+                    </button>
+                </li>
+            </ul>
+        </nav>
+    </div>
+    <script src="/static/js/weapons.js"></script>
+{% endblock %}

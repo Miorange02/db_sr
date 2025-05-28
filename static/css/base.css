@@ -1,0 +1,108 @@
+.navbar {
+    background-color: rgb(71, 101, 187) !important; /* 半透明背景 */
+    backdrop-filter: blur(5px); /* 背景模糊效果 */
+}
+
+.navbar-nav .nav-link {
+    margin-right: 15px; /* 增加间距 */
+    font-size: 1.2rem; /* 放大字体 */
+    font-weight: 600; /* 加粗字体 */
+    color: #444; /* 设置字体颜色 */
+    background-color: #f0f0f0; /* 添加背景颜色 */
+    border-radius: 5px; /* 圆角 */
+    padding: 5px 10px; /* 内边距 */
+    transition: all 0.3s ease; /* 添加过渡效果 */
+}
+
+.navbar-nav .nav-link:hover {
+    background-color: #e0e0e0; /* 悬停时背景颜色 */
+    text-decoration: none; /* 去掉下划线 */
+}
+
+.navbar-nav .nav-link.active {
+    position: relative;
+    color: #007bff; /* 当前页字体颜色 */
+    background-color: #6ac7f6; /* 当前页背景颜色 */
+}
+
+.navbar-nav .nav-link.active::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 10%;
+    width: 80%;
+    height: 2px;
+    background-color: #007bff; /* 淡蓝色下划线 */
+}
+
+body {
+    background: #f5f7fa;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+.main-body {
+    margin: 0 0;
+    padding: 0 24px;
+}
+
+img {
+    display: block;
+    margin: 0 auto;
+}
+
+.bigtitle {
+
+    font-size: 1.5rem;
+    font-family: "HarmonyOS_Sans_SC", "PingFang SC", "Microsoft YaHei", "FZShuTi", "STKaiti", cursive, sans-serif;
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+
+.sidebar {
+    background: transparent;
+    padding-top: 30px;
+    min-width: 180px;
+    max-width: 260px;
+    height: 100%;
+    border-right: 1px solid #e0e0e0;
+    display: flex;
+    flex-direction: column-reverse; /* 反转子元素顺序，使吉祥物贴底 */
+    justify-content: space-between;
+}
+
+.mascot-box {
+    position: fixed; /* 改为fixed定位 */
+    left: 20px; /* 距离左侧20px */
+    bottom: 20px; /* 距离底部20px */
+    width: 240px;
+    height: 240px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    z-index: 1000; /* 确保在最上层 */
+    pointer-events: none; /* 可选：防止遮挡点击事件 */
+}
+
+
+.main-content {
+    min-height: 500px;
+    border-radius: 8px;
+    margin: 0 0;
+    padding: 24px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    flex: 1 1 auto;
+    background-color: rgba(255, 255, 255, 0.5); /* 半透明白色背景 */
+    backdrop-filter: blur(2px); /* 轻微模糊效果增强可读性 */
+    border: 1px solid rgba(255, 255, 255, 0.3); /* 半透明边框 */
+}
+
+.starrail {
+    background-image: url(/static/img/bg3.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+    min-height: 100vh;
+    padding-bottom: 30px;
+}
+

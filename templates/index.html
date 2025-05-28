@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% block content %}
+    <div id="app">
+        <div class="row row-cols-1 row-cols-md-3 g-4">
+            <div class="col" v-for="character in characters" :key="character.name">
+                <div class="card d-flex flex-md-row h-100" style="background-color: rgba(255, 255, 255, 0.7);">
+                    <img
+                            :src="character.avatar_url"
+                            class="card-img-left flex-md-fill"
+                            style="width: 50%; object-fit: cover;"
+                    >
+                    <div class="card-body flex-md-shrink-1">
+                        <h5 class="card-title">${ character.name }$</h5>
+                        <h6 class="card-subtitle mb-2 text-muted">光锥: <strong>${ character.weapon }$</strong></h6>
+                        <h6 class="card-text">生命值: ${ character.total_hp }$</h6>
+                        <button class="btn btn-outline-info btn-sm" style="margin-top: 5px;"
+                                @click="changeWeapon(character.id)">更换光锥
+                        </button>
+                        <br>
+                        <small class="text-muted">介绍：${ character.profile }$</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 分页按钮 -->
+        <nav aria-label="Page navigation" class="mt-4">
+            <ul class="pagination justify-content-center">
+                <li class="page-item" :class="{ disabled: page === 1 }">
+                    <button class="page-link" @click="changePage(page - 1)">上一页</button>
+                </li>
+                <li class="page-item" v-for="p in totalPages" :key="p" :class="{ active: p === page }">
+                    <button class="page-link" @click="changePage(p)">${ p }$</button>
+                </li>
+                <li class="page-item" :class="{ disabled: page === totalPages }">
+                    <button class="page-link" @click="changePage(page + 1)">下一页</button>
+                </li>
+            </ul>
+        </nav>
+    </div>
+    <script src="/static/js/index.js"></script>
+
+{% endblock %}

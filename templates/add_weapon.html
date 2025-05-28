@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% block content %}
+    <link rel="stylesheet" href="/static/css/add.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <div id="app" class="container mt-5 d-flex justify-content-center align-items-center" style="min-height: 80vh;">
+        <div class="card p-4 shadow-lg" style="width: 100%; max-width: 500px;">
+            <form>
+                <div class="title">添加武器</div>
+                <p class="message">武器名称和命途必填，生命值加成可选填</p>
+                <div class="mb-3">
+                    <label for="name" class="form-label">武器名称</label>
+                    <input type="text" class="form-control" id="name" placeholder="请输入武器名称"
+                           v-model="formData.name" required>
+                </div>
+                <div class="mb-3">
+                    <label for="path" class="form-label">命途</label>
+                    <select class="form-select" id="path" name="path" v-model="formData.path" required>
+                        <option value="" selected disabled>请选择命途</option>
+                        <option value="毁灭">毁灭</option>
+                        <option value="巡猎">巡猎</option>
+                        <option value="智识">智识</option>
+                        <option value="同谐">同谐</option>
+                        <option value="丰饶">丰饶</option>
+                        <option value="存护">存护</option>
+                        <option value="虚无">虚无</option>
+                        <option value="记忆">记忆</option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label for="bonus_hp" class="form-label">生命值加成</label>
+                    <input type="number" class="form-control" id="bonus_hp" placeholder="请输入生命值加成"
+                           v-model="formData.bonus_hp" required>
+                </div>
+                <button class="btn btn-success w-100" @click.prevent="submitForm">添加武器</button>
+                <a href="/weapons" class="btn btn-secondary w-100 mt-2">返回</a>
+                <div v-if="errorMessage" class="alert alert-danger mt-3">
+                    ${ errorMessage }$
+                </div>
+            </form>
+        </div>
+    </div>
+    <script src="/static/js/add_weapon.js"></script>
+{% endblock %}

@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+{% block content %}
+    <div id="app">
+        <div class="mb-3">
+            <div class="row g-2 align-items-center justify-content-between">
+                <div class="col-auto d-flex align-items-center">
+                    <div class="me-2">
+                        <input type="text" v-model="searchId" class="form-control" placeholder="搜索角色ID"
+                               @keydown.enter="searchCharacters">
+                    </div>
+                    <div class="me-2">
+                        <input type="text" v-model="searchName" class="form-control" placeholder="搜索角色名称"
+                               @keydown.enter="searchCharacters">
+                    </div>
+                    <div class="me-2">
+                        <button class="btn btn-outline-primary button" @click="searchCharacters">搜索
+                            <div class="hoverEffect">
+                                <div></div>
+                            </div>
+                        </button>
+                    </div>
+                    <div>
+                        <button class="btn btn-outline-primary button" @click="fetchCharacters">返回
+                            <div class="hoverEffect">
+                                <div></div>
+                            </div>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="col-auto">
+                    <a href="/characters/adds" class="btn btn-success">添加角色</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- 表格 -->
+        <table class="table table-hover table-striped">
+            <thead>
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">名称</th>
+                <th scope="col">命途</th>
+                <th scope="col">基础生命值</th>
+                <th scope="col">操作</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr v-for="character in characters" :key="character.id">
+                <th scope="row">${character.id}$</th>
+                <td>${character.name}$</td>
+                <td>${character.path}$</td>
+                <td>${character.base_hp}$</td>
+                <td>
+                    <button class="btn btn-warning btn-sm me-2" @click="editCharacter(character)">编辑</button>
+                    <button class="btn btn-danger btn-sm" @click="deleteCharacter(character.id)">删除</button>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+        <!-- 分页控件 -->
+        <nav>
+            <ul class="pagination justify-content-center">
+                <li class="page-item" :class="{disabled: page === 1}">
+                    <button class="page-link btn-info" @click="changePage(page-1)" :disabled="page === 1">上一页
+                    </button>
+                </li>
+                <li class="page-item" v-for="p in totalPages" :key="p" :class="{active: p === page}">
+                    <button class="page-link" @click="changePage(p)">${p}$</button>
+                </li>
+                <li class="page-item btn-info" :class="{disabled: page === totalPages}">
+                    <button class="page-link" @click="changePage(page+1)" :disabled="page === totalPages">下一页
+                    </button>
+                </li>
+            </ul>
+        </nav>
+    </div>
+    <script src="/static/js/characters.js"></script>
+{% endblock %}

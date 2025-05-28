@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+{% block content %}
+
+    <link rel="stylesheet" href="/static/css/add.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <div id="app" class="container mt-5 d-flex justify-content-center align-items-center" style="min-height: 80vh;">
+        <div class="card p-4 shadow-lg" style="width: 100%; max-width: 500px;">
+            <form>
+                <div class="title">添加角色</div>
+                <p class="message">推荐使用<a  href="https://bbs.mihoyo.com/sr/wiki/channel/map/17/18?bbs_presentation_style=no_header" target="_blank" style="color: blue;">官方</a>命名以匹配角色立绘(e.g.忘归人,托帕&账账,开拓者•同谐)
+                </p>
+                <div class="mb-3">
+                    <label for="name" class="form-label">角色名称</label>
+                    <input type="text" class="form-control" id="name" placeholder="请输入角色名称"
+                           v-model="formData.name" required>
+                </div>
+
+                <div class="mb-3">
+                    <label for="path" class="form-label">命途</label>
+                    <select class="form-select" id="path" name="path" v-model="formData.path" required>
+                        <option value="" selected disabled>请选择命途</option>
+                        <option value="毁灭">毁灭</option>
+                        <option value="巡猎">巡猎</option>
+                        <option value="智识">智识</option>
+                        <option value="同谐">同谐</option>
+                        <option value="丰饶">丰饶</option>
+                        <option value="存护">存护</option>
+                        <option value="虚无">虚无</option>
+                        <option value="记忆">记忆</option>
+                    </select>
+                </div>
+
+                <div class="mb-3">
+                    <label for="base_hp" class="form-label">基础生命值</label>
+                    <input type="number" class="form-control" id="base_hp" placeholder="请输入基础生命值"
+                           v-model="formData.base_hp">
+                </div>
+                <div class="mb-3">
+                    <label for="description" class="form-label">角色介绍</label>
+                    <textarea class="form-control" id="description" rows="3" v-model="formData.profile"
+                              placeholder="请输入角色介绍"></textarea>
+                </div>
+                <button class="btn btn-success w-100" @click.prevent="submitForm">添加角色</button>
+                <a href="/characters" class="btn btn-secondary w-100 mt-2">返回</a>
+                <div v-if="errorMessage" class="alert alert-danger mt-3">
+                    ${ errorMessage }$
+                </div>
+            </form>
+        </div>
+    </div>
+    <script src="/static/js/add_character.js"></script>
+{% endblock %}
